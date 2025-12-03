@@ -1844,47 +1844,25 @@ HTACCESS;
     $themesHtaccess = $rootDir . '/themes/.htaccess';
     if (!file_exists($themesHtaccess)) {
         $themesHtaccessContent = <<<HTACCESS
-# Дозволити доступ до статичних ресурсів тем
-<DirectoryMatch "^.*/assets/">
+# Заборона прямого доступу до PHP файлів тем
+<FilesMatch "\.php$">
     <IfModule mod_authz_core.c>
-        Require all granted
+        Require all denied
     </IfModule>
     <IfModule !mod_authz_core.c>
-        Order Allow,Deny
-        Allow from all
-    </IfModule>
-</DirectoryMatch>
-
-# Дозволити доступ до статичних файлів (CSS, JS, зображення, шрифти)
-<FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot|otf|webp|json)$">
-    <IfModule mod_authz_core.c>
-        Require all granted
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order Allow,Deny
-        Allow from all
+        Order deny,allow
+        Deny from all
     </IfModule>
 </FilesMatch>
 
-# Заборонити доступ до конфігураційних директорій
-<DirectoryMatch "(src|config|inc|includes)/">
+# Дозволяємо доступ до статичних файлів
+<FilesMatch "\.(css|js|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot|webp|map)$">
     <IfModule mod_authz_core.c>
-        Require all denied
+        Require all granted
     </IfModule>
     <IfModule !mod_authz_core.c>
-        Order Allow,Deny
-        Deny from all
-    </IfModule>
-</DirectoryMatch>
-
-# Захист системних файлів тем
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|php)$">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order Allow,Deny
-        Deny from all
+        Order allow,deny
+        Allow from all
     </IfModule>
 </FilesMatch>
 HTACCESS;

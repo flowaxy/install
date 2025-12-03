@@ -6,7 +6,7 @@
  * Підтримує MySQL 5.7 та MySQL 8.0+ (пріоритет на версію 8+)
  * 
  * @package Engine\Modules
- * @version 1.0.0
+ * @version 1.0.0 Alpha prerelease
  */
 
 declare(strict_types=1);
@@ -47,7 +47,7 @@ class InstallerManager extends BaseModule {
             'name' => 'InstallerManager',
             'title' => 'Установщик системи',
             'description' => 'Перевірка та виконання установки системи',
-            'version' => '1.0.0',
+            'version' => '1.0.0 Alpha prerelease',
             'author' => 'Flowaxy Team'
         ];
     }

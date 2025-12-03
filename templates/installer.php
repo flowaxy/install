@@ -98,7 +98,7 @@ $error = $error ?? null;
 
         <footer class="installer-footer">
             <span>Flowaxy CMS Installer</span>
-            <span>v1.0.0 Dev</span>
+            <span>v1.0.0 Alpha prerelease</span>
         </footer>
     </div>
 
